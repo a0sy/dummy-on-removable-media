@@ -1,0 +1,39 @@
+/** reset **/
+html, body, div, form, fieldset, legend, label {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th, td {
+  text-align: left;
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6, th, td, caption {
+  font-weight:normal;
+}
+
+img {
+  border: 0;
+}
+
+/** style **/
+body {
+  font-family:'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
+}
+#demo {
+  min-height: calc(100vh - 1000px);
+}
+#demo input {
+  width: 80%;
+}
+.output {
+  height: 1000px;
+  background: #21252b;
+  color: #9da5b4
+}

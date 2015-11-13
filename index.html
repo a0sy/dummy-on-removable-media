@@ -9,9 +9,14 @@
 </head>
 <body>
   <div id="demo">
+    <select>
+      <option v-for="drive in drives" v-bind:value="drive.value">
+        {{ drive.ltr }}
+      </optiton>
+    </select>
     <button v-on:click="driveLetter">run</button>
-    <pre class="output">
-{{ output }}
+    <pre class="result">
+{{ result }}
     </pre>
   </div>
   <script src="index.js"></script>

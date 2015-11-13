@@ -6,36 +6,40 @@ var Vue = require("vue");
 var vm = new Vue({
   el: '#demo',
   data: {
-    //command: '',
     buf: '',
-    output: ''
+    result: '',
+    selected: 'A:',
+    drives: []
   },
   methods: {
-    execCommand: function (command){
+    execCommand: function(command) {
       var exec = require('child_process').exec;
 
-      exec(command, function (error, stdout, stderr) {
-        if(stdout){
-            vm.output = stdout;
+      exec(command, function(error, stdout, stderr) {
+        if (stdout) {
+            vm.buf = stdout;
         }
-        if(stderr){
-            vm.output = stderr;
-          }
+        if (stderr) {
+            vm.buf = 'stderr: ' + stderr;
+        }
         if (error !== null) {
-            vm.output = error;
+            vm.buf = 'Exec error: ' + error;
         }
       });
     },
     driveLetter: function() {
+      // wmic Command
       this.execCommand('wmic logicaldisk get caption');
-      if (/stderr:|Exec error:/.test(this.buf)) {
-        vm.output = 'error';
+      //this.execCommand('test');
+      if (this.buf.match(/stderr:|Exec error:/)) {
+        this.result = 'error!!';
       } else {
-        /*
-        buf.split(/\r\r\n/).forEach(function(drive) {
+        this.buf.split(/\r\r\n/).forEach(function(d) {
+            if (d.match(/\:/)) {
+              vm.drives.push({ltr: d.trim(), value: d.trim()});
+            }
         })
-        */
-        vm.output = this.buf;
+        //this.result = this.buf;
         /*
         diskSpace.check('C', function (free)) {
             alert('diskspace: ' + free);
